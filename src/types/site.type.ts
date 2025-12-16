@@ -4,6 +4,7 @@ export interface SiteType {
 	heroImage: string
 	copyright: string
 	languageCode: string
+	twitterX: string
 }
 
 export interface AuthorType {
@@ -13,8 +14,8 @@ export interface AuthorType {
 }
 
 export interface FaviconType {
-	rel?: string
-	type?: string
-	href?: string
+	rel: string
+	type: string
+	href: string
 	sizes?: string
 }
