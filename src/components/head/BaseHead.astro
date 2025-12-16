@@ -1,0 +1,62 @@
+---
+import { FAVICONS, SITE } from '../../config/site'
+
+export interface BaseHeadProps {
+	title: string
+	description?: string
+	type?: string
+	image?: string
+}
+
+const { title, description, type, image } = Astro.props as BaseHeadProps
+
+const pathname = Astro.url.pathname
+const baseURL = import.meta.env.BASE_URL
+
+const isHome = pathname === baseURL
+const seoTitle = isHome ? SITE.title : `${title} | ${SITE.title}`
+
+const imageURL = image
+	? image.startsWith('http')
+		? image
+		: new URL(image, Astro.site).href
+	: undefined
+---
+
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content={Astro.generator} />
+
+<title>{seoTitle}</title>
+
+<!-- META BASE -->
+<meta name="title" content={seoTitle} />
+{description && <meta name="description" content={description} />}
+
+<!-- LINK -->
+<link rel="canonical" href={Astro.url.href} />
+
+<!-- OPEN GRAPH -->
+<meta property="og:locale" content={SITE.languageCode} />
+<meta property="og:title" content={seoTitle} />
+<meta property="og:url" content={Astro.url.href} />
+<meta property="og:site_name" content={SITE.title} />
+<meta property="og:type" content={type?.toLowerCase() || 'website'} />
+
+{description && <meta property="og:description" content={description} />}
+{imageURL && <meta property="og:image" content={imageURL} />}
+
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={seoTitle} />
+{imageURL && <meta name="twitter:image" content={imageURL} />}
+{description && <meta name="twitter:description" content={description} />}
+{SITE.twitterX && <meta name="twitter:site" content={SITE.twitterX} />}
+{SITE.twitterX && <meta name="twitter:creator" content={SITE.twitterX} />}
+
+<!-- FAVICONS -->
+{
+	FAVICONS.map(({ rel, type, href, sizes }) => (
+		<link rel={rel} href={href} {...(type ? { type } : {})} {...(sizes ? { sizes } : {})} />
+	))
+}
