@@ -13,6 +13,7 @@ export interface ConfigType {
 export interface AuthorType {
   name: string
   email: string
+  avatar: string
 }
 
 export interface CopyrightType {
@@ -41,7 +42,8 @@ export const config: ConfigType = {
 
   author: {
     name: 'Putra Jaya',
-    email: 'masputrawae.official@gmail.com'
+    email: 'masputrawae.official@gmail.com',
+    avatar: "https://res.cloudinary.com/mpw-img/image/upload/v1751292526/logo_cudnki.jpg"
   },
 
   copyright: {

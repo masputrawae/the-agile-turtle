@@ -1,0 +1,36 @@
+---
+import { Picture } from 'astro:assets'
+
+import { config } from '../site.config'
+const {
+	author: { name, avatar }
+} = config
+---
+
+<header class="mx-auto max-w-[65ch] px-4 py-16">
+	<section
+		class:list={['grid w-full items-center gap-4', 'md:grid-cols-[200px_minmax(0,1fr)] md:gap-8']}
+	>
+		<div class="mx-auto w-fit overflow-hidden rounded-full border-4 border-amber-600 p-2">
+			<Picture
+				src={avatar}
+				alt={name}
+				inferSize={true}
+				width={200}
+				height={200}
+				priority={true}
+				class="rounded-full object-cover object-center"
+			/>
+		</div>
+		<div class="text-center md:text-start">
+			<h1 class="text-xl font-semibold">Selamat Datang!👋</h1>
+			<h2 class="mb-4 text-4xl font-semibold">
+				<span class="text-amber-600 dark:text-amber-400">Hai,</span> nama saya Putra
+			</h2>
+			<p class="text-sm">
+				Seorang manusia biasa, yang sedang terjebak di dunia yang penuh dengan tanda tanya. Dan
+				disinilah tempatku menuliskan tanda tanya tersebut.
+			</p>
+		</div>
+	</section>
+</header>
