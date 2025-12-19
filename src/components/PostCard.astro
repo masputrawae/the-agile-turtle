@@ -1,0 +1,67 @@
+---
+import { Picture } from 'astro:assets'
+import { Icon } from 'astro-icon/components'
+import type { HTMLAttributes } from 'astro/types'
+
+import DateFormat from './DateFormat.astro'
+
+interface ButtonType extends HTMLAttributes<'a'> {
+	icon: string
+	isPrimary?: boolean
+}
+
+export interface PostCardProps {
+	title: string
+	image: string
+	content: string
+	buttons: ButtonType[]
+}
+
+const { title, content, buttons, image } = Astro.props as PostCardProps
+---
+
+<article
+	class:list={[
+		'mx-auto grid w-full gap-4 overflow-hidden rounded-2xl bg-neutral-200/50 p-4 shadow-sm/50',
+		'dark:bg-neutral-700/50',
+		'sm:max-w-xs',
+		'md:max-w-sm'
+	]}
+>
+	<header>
+		<Picture
+			src={image}
+			alt={title}
+			width={288}
+			height={216}
+			inferSize={true}
+			class:list={['h-auto w-full rounded-xl shadow-sm/50']}
+		/>
+		<h3 class:list={['pt-4 text-xl font-semibold text-neutral-950', 'dark:text-neutral-50']}>
+			{title}
+		</h3>
+	</header>
+	<section class="text-sm">
+		<p class="line-clamp-3">{content}</p>
+	</section>
+	<footer>
+		<nav class="flex items-center gap-2">
+			{
+				buttons.map(({ href, name, icon, target, isPrimary }) => (
+					<a
+						href={href}
+						{target}
+						class:list={[
+							isPrimary ? 'bg-amber-600 hover:bg-amber-500 dark:bg-amber-700 dark:hover:bg-amber-600' : 'bg-neutral-700 hover:bg-neutral-600',
+							'flex w-fit items-center gap-2 rounded-lg px-4 py-2 font-bold text-white shadow-xs/50'
+						]}
+					>
+						<Icon size={20} name={icon} />
+						<span>{name}</span>
+						<span class="sr-only">{title}</span>
+					</a>
+				))
+			}
+		</nav>
+	</footer>
+</article>

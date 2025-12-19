@@ -1,0 +1,58 @@
+---
+import { Picture } from 'astro:assets'
+import { Icon } from 'astro-icon/components'
+import { getCollection } from 'astro:content'
+import PostCard from './PostCard.astro'
+
+const allProjects = await getCollection("projects")
+
+const featured = allProjects
+	// @ts-ignore
+	.sort((a, b) => b.data.pubDate - a.data.pubDate)
+	.filter((item) => item.data.featured)
+---
+
+<section class="mx-auto px-4 py-8">
+	<h2
+		class:list={[
+			'mb-8 border-b border-b-neutral-200 text-lg font-semibold',
+			'dark:border-neutral-700'
+		]}
+	>
+		Featured Projects
+	</h2>
+	<p class="max-w-[60ch]">
+		Biar kelihatan seperti orang sibuk hehe 😄..., beberapa proyek, tapi nggak beneran, cuma hasil
+		praktik dan belajar selama ini
+	</p>
+	<div
+		class:list={[
+			'my-4 grid gap-8 border-t border-neutral-200 py-8 dark:border-neutral-700',
+			'sm:grid-cols-2',
+			'lg:grid-cols-3'
+		]}
+	>
+		{
+			featured.map(({id, collection, data:{title, heroImage, description, repo}}) => (
+				<PostCard
+					title={title}
+					image={heroImage}
+					content={description}
+					buttons={[
+						{
+							name: "Repo",
+							icon: "bi:github",
+							href: repo,
+							isPrimary: true
+						},
+						{
+							name: "Read More",
+							icon: "bi:stickies-fill",
+							href: `${collection}/${id}`
+						},
+					]}
+				/>
+			))
+		}
+	</div>
+</section>
