@@ -1,0 +1,72 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+import { Icon } from 'astro-icon/components'
+import { config } from '../site.config.ts'
+
+const basePath = import.meta.env.BASE_URL
+const baseUrl = import.meta.env.SITE
+const pathname = Astro.url.pathname
+
+const { siteTitle } = config
+
+export const links: HTMLAttributes<'a'>[] = [
+	{
+		name: 'Home',
+		href: '/'
+	},
+	{
+		name: 'About',
+		href: '/about/'
+	},
+	{
+		name: 'Blog',
+		href: '/blog/'
+	},
+	{
+		name: 'Tags',
+		href: '/tags/'
+	},
+	{
+		name: 'Projects',
+		href: '/projects/'
+	}
+]
+---
+
+<header>
+	<a href={new URL(basePath, baseUrl)}>{siteTitle}</a>
+
+	<nav>
+		{
+			links.map(({ name, href }) => {
+				const isCurrent = href === pathname
+				const isAncestor = pathname.startsWith(String(href)) && href !== basePath
+				const isActive = isCurrent || isAncestor
+				return (
+					<a
+						href={href}
+						class:list={[isActive && 'text-amber-600 dark:text-amber-400', 'flex items-center']}
+						{...(isCurrent
+							? { 'aria-current': 'page' }
+							: isAncestor
+								? { 'aria-current': 'true' }
+								: {})}
+					>
+						{name}
+					</a>
+				)
+			})
+		}
+	</nav>
+
+	<div>
+		<button>
+			<Icon name="bi:moon-stars-fill" />
+			<Icon name="bi:sun" />
+		</button>
+		<button>
+			<Icon name="bi:menu-button-wide-fill" />
+			<Icon name="bi:x-lg" />
+		</button>
+	</div>
+</header>
