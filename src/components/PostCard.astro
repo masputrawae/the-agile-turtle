@@ -52,7 +52,9 @@ const { title, content, buttons, image } = Astro.props as PostCardProps
 						href={href}
 						{target}
 						class:list={[
-							isPrimary ? 'bg-amber-600 hover:bg-amber-500 dark:bg-amber-700 dark:hover:bg-amber-600' : 'bg-neutral-700 hover:bg-neutral-600',
+							isPrimary
+								? 'bg-amber-600 hover:bg-amber-500 dark:bg-amber-700 dark:hover:bg-amber-600'
+								: 'bg-neutral-700 hover:bg-neutral-600',
 							'flex w-fit items-center gap-2 rounded-lg px-4 py-2 font-bold text-white shadow-xs/50'
 						]}
 					>
