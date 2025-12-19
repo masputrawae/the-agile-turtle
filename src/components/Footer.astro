@@ -1,0 +1,36 @@
+---
+import { Icon } from 'astro-icon/components'
+import { config } from '../site.config.ts'
+
+const {
+	copyright: { year, licenseUrl, license },
+	author: { name, email },
+	social: { links }
+} = config
+---
+
+<div class:list={['border-t border-neutral-200', 'dark:border-neutral-700']}>
+	<footer class:list={['my-8 flex min-h-16 flex-wrap justify-between gap-8 px-4']}>
+		<nav class="mx-auto flex items-center justify-center gap-4">
+			{
+				links.map(({ href, name, icon, target }) => (
+					<a href={href} {target}>
+						<Icon size={24} name={icon} />
+						<span class="sr-only">{name}</span>
+					</a>
+				))
+			}
+		</nav>
+		<aside class="mx-auto flex items-center justify-center text-sm">
+			<p>
+				&copy; {year}
+				<a
+					href={`mailto:${email}`}
+					class="text-amber-600 underline dark:text-amber-400"
+					target="_blank">{name}</a
+				> |
+				<a href={licenseUrl} class="underline" target="_blank">{license}</a>
+			</p>
+		</aside>
+	</footer>
+</div>

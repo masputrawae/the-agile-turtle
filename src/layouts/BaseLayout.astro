@@ -6,6 +6,7 @@ import { ClientRouter } from 'astro:transitions'
 import { Font } from 'astro:assets'
 
 import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
 
 const { languageCode } = config
 ---
@@ -23,17 +24,18 @@ const { languageCode } = config
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Masputrawae</title>
-
 		<script>
 			import { main } from '../components/scripts/main.ts'
 			main()
 		</script>
-
 		<Font cssVariable="--font-geist" preload />
 		<ClientRouter />
 	</head>
 	<body class:list={['mx-auto max-w-5xl']}>
 		<Header />
-		<slot />
+		<div class="min-h-[calc(100dvh-16rem)]">
+			<slot />
+		</div>
+		<Footer />
 	</body>
 </html>
