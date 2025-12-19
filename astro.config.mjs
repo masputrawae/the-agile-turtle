@@ -1,29 +1,29 @@
 // @ts-check
-import { defineConfig, fontProviders } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config'
 
-import tailwindcss from '@tailwindcss/vite';
-import icon from 'astro-icon';
-import mdx from '@astrojs/mdx';
+import tailwindcss from '@tailwindcss/vite'
+import icon from 'astro-icon'
+import mdx from '@astrojs/mdx'
 
 // https://astro.build/config
 export default defineConfig({
-  site: "http://localhost:4321",
-  base: "/",
-  trailingSlash: "always",
+	site: 'http://localhost:4321',
+	base: '/',
+	trailingSlash: 'always',
 
-  vite: {
-    plugins: [tailwindcss()]
-  },
+	vite: {
+		plugins: [tailwindcss()]
+	},
 
-  integrations: [icon(), mdx()],
-  experimental: {
-    fonts: [
-      {
-        name: 'Geist',
-        provider: fontProviders.google(),
-        weights: [400, 500, 600, 700],
-        cssVariable: '--font-geist'
-      }
-    ]
-  }
-});
+	integrations: [icon(), mdx()],
+	experimental: {
+		fonts: [
+			{
+				name: 'Geist',
+				provider: fontProviders.google(),
+				weights: [400, 500, 600, 700],
+				cssVariable: '--font-geist'
+			}
+		]
+	}
+})
