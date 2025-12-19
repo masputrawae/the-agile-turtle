@@ -33,10 +33,35 @@ export const links: HTMLAttributes<'a'>[] = [
 ]
 ---
 
-<header>
-	<a href={new URL(basePath, baseUrl)}>{siteTitle}</a>
+<header
+	class:list={[
+		'relative flex min-h-16 items-center justify-between px-4 py-2',
+		'border-b border-neutral-200',
+		'dark:border-neutral-700',
+		'md:border-none'
+	]}
+>
+	<a
+		transition:persist
+		href={new URL(basePath, baseUrl)}
+		class:list={[
+			'text-xl font-semibold text-neutral-950 hover:text-amber-600',
+			'dark:text-neutral-50 dark:hover:text-amber-400',
+			'md:text-2xl'
+		]}
+	>
+		{siteTitle}
+	</a>
 
-	<nav>
+	<nav
+		id="navbar"
+		class:list={[
+			'absolute start-0 top-full flex w-full origin-top flex-col gap-2 bg-neutral-50 px-4 py-4',
+			'hidden scale-y-0 transition-all duration-300',
+			'border-y border-neutral-200',
+			'dark:border-neutral-700 dark:bg-neutral-800'
+		]}
+	>
 		{
 			links.map(({ name, href }) => {
 				const isCurrent = href === pathname
@@ -59,14 +84,14 @@ export const links: HTMLAttributes<'a'>[] = [
 		}
 	</nav>
 
-	<div>
-		<button>
-			<Icon name="bi:moon-stars-fill" />
-			<Icon name="bi:sun" />
+	<div class="flex items-center gap-4">
+		<button id="toggle-theme">
+			<Icon size={20} name="bi:moon-stars-fill" id="icon-dark-mode" />
+			<Icon size={20} name="bi:sun" id="icon-light-mode" class="hidden" />
 		</button>
-		<button>
-			<Icon name="bi:menu-button-wide-fill" />
-			<Icon name="bi:x-lg" />
+		<button id="toggle-navbar">
+			<Icon size={20} name="bi:menu-button-wide-fill" id="icon-navbar-open" />
+			<Icon size={20} name="bi:x-lg" id="icon-navbar-close" class="hidden" />
 		</button>
 	</div>
 </header>
