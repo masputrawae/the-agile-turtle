@@ -12,7 +12,7 @@ const { iconSize = 20 } = Astro.props
 <ul class="flex items-center gap-4">
 	{
 		links.map(({ name, href, target, icon }) => (
-			<li class="text-zinc-900 dark:text-zinc-50 hover:text-amber-500">
+			<li class="text-zinc-900 hover:text-amber-500 dark:text-zinc-50">
 				<a href={href} {target}>
 					<Icon size={iconSize} name={icon} />
 					<span class="sr-only">{name}</span>

@@ -1,26 +1,27 @@
 ---
-import { Icon } from "astro-icon/components";
-import Button from "./Button.astro";
-
-
+import { Icon } from 'astro-icon/components'
+import Button from './Button.astro'
 ---
-<section class="-mt-px border-t border-zinc-200 py-20 dark:border-zinc-700 min-h-screen grid place-content-center">
-  <article class="prose prose-zinc dark:prose-invert mx-auto text-center max-w-2xl">
-    <h2>Terima Kasih</h2>
-    <p>
-      Jika ingin berbincang, bertanya, atau sekadar menyapa, kamu bisa menghubungi saya melalui GitHub
-      atau gabung di Discord ku 😄.
-    </p>
 
-    <div class="not-prose mt-8 flex justify-center gap-4">
-      <Button href="https://github.com/masputrawae/" target="_blank">
-        <Icon size={20} name="bi:github" />
-        Github
-      </Button>
-      <Button href="https://github.com/masputrawae/" target="_blank">
-        <Icon size={20} name="bi:discord" />
-        Discord
-      </Button>
-    </div>
-  </article>
+<section
+	class="-mt-px grid min-h-screen place-content-center border-t border-zinc-200 py-20 dark:border-zinc-700"
+>
+	<article class="prose prose-zinc dark:prose-invert mx-auto max-w-2xl text-center">
+		<h2>Terima Kasih</h2>
+		<p>
+			Jika ingin berbincang, bertanya, atau sekadar menyapa, kamu bisa menghubungi saya melalui
+			GitHub atau gabung di Discord ku 😄.
+		</p>
+
+		<div class="not-prose mt-8 flex justify-center gap-4">
+			<Button href="https://github.com/masputrawae/" target="_blank">
+				<Icon size={20} name="bi:github" />
+				Github
+			</Button>
+			<Button href="https://github.com/masputrawae/" target="_blank">
+				<Icon size={20} name="bi:discord" />
+				Discord
+			</Button>
+		</div>
+	</article>
 </section>
