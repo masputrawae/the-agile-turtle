@@ -8,13 +8,13 @@ interface LinkProps extends HTMLAttributes<'a'> {
 	size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
 }
 
-const { href, className = '', variant = 'ghost', size = 'md', ...rest } = Astro.props as LinkProps
+const { href, className = '', variant = 'secondary', size = 'md', ...rest } = Astro.props as LinkProps
 
 const variants = {
 	primary: 'bg-amber-500 text-black hover:bg-amber-400',
-	secondary: 'bg-neutral-700 text-white hover:bg-neutral-600',
-	outline: 'border border-neutral-600 text-white hover:bg-neutral-700/50',
-	ghost: 'bg-transparent text-black hover:bg-neutral-700/40 dark:text-white',
+	secondary: 'bg-zinc-700 text-white hover:bg-zinc-600',
+	outline: 'border border-zinc-600 text-white hover:bg-zinc-700/50',
+	ghost: 'bg-transparent text-black hover:bg-zinc-700/40 dark:text-white',
 	danger: 'bg-red-600 text-white hover:bg-red-500'
 }
 
@@ -31,7 +31,7 @@ const sizes = {
 <a
 	href={href}
 	class:list={[
-		'inline-flex items-center gap-2 rounded-md font-semibold transition-all duration-200',
+		'inline-flex items-center gap-2 rounded-md font-bold transition-all duration-200',
 		'shadow-xs/50 hover:scale-[1.03] active:scale-[0.97]',
 		variants[variant],
 		sizes[size],

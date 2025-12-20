@@ -1,0 +1,43 @@
+---
+import { Picture } from 'astro:assets'
+import { getCollection } from 'astro:content'
+import { config } from '../site.config'
+import Button from './Button.astro'
+import { Icon } from 'astro-icon/components'
+
+const blog = await getCollection('blog')
+
+const featured = blog
+	//@ts-ignore
+	.sort((a, b) => b.data.pubDate - a.data.pubDate)
+	.filter((item) => item.data.featured).slice(0, 6)
+---
+
+<section class="-mt-px py-14 grid gap-8">
+	<article class="prose prose-zinc dark:prose-invert mx-auto max-w-3xl">
+		<h2>Writing</h2>
+		<p>
+			Tulisan-tulisan di bawah ini sebagian besar adalah catatan belajar dan pemikiran acak selama proses memahami teknologi dan kehidupan. Tidak semuanya rapi, tapi semuanya jujur.
+		</p>
+	</article>
+
+	<div class="mx-auto max-w-3xl grid gap-8 md:grid-cols-2">
+		{
+			featured.map(({ id, collection, data: { heroImage, title, description } }) => (
+				<article class="border border-zinc-200 dark:border-zinc-700 rounded-lg shadow-sm overflow-hidden shadow-xs/30">
+					<Picture src={heroImage ?? config.heroImage} alt={title} inferSize={true} class="object-cover object-center w-full border-b border-zinc-200 dark:border-zinc-700"/>
+          <div class="p-4 prose prose-zinc dark:prose-invert">
+            <h3 class="line-clamp-1">{title}</h3>
+            <p class="line-clamp-3">{description}</p>
+            <div class="not-prose flex items-center gap-4">
+              <Button href={`/${collection}/${id}/`}>
+                <Icon size={20} name="bi:alt" />
+                Baca Selengkapnya
+              </Button>
+            </div>
+          </div>
+				</article>
+			))
+		}
+	</div>
+</section>

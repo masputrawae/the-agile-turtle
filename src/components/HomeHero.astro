@@ -2,14 +2,15 @@
 import { config } from '../site.config'
 import { Picture } from 'astro:assets'
 import { Icon } from 'astro-icon/components'
+
 const { author } = config
 
 import Button from './Button.astro'
 ---
 
-<header class="mx-auto grid min-h-[calc(100vh-4rem)] max-w-4xl py-8">
-	<div class="grid -translate-y-4 items-center gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,18rem)]">
-		<section
+<header class="mx-auto mb-10 grid min-h-[calc(100vh-10rem)] max-w-4xl py-8">
+	<div class="grid items-center gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,18rem)]">
+		<figure
 			class:list={[
 				'overflow-hidden rounded-full border-4 border-amber-600 p-2',
 				'w-50',
@@ -20,27 +21,26 @@ import Button from './Button.astro'
 			<Picture
 				src={author.avatar}
 				alt={author.name}
-				layout="constrained"
 				inferSize={true}
 				priority={true}
 				widths={[200, 256]}
 				class="size-full rounded-full object-cover object-center"
 			/>
-		</section>
+		</figure>
 
 		<section class="grid gap-4 md:order-1">
 			<h1 class="text-2xl font-semibold text-zinc-700 dark:text-zinc-400">Selamat Datang</h1>
 			<h2 class="text-2xl font-semibold text-zinc-950 md:text-4xl dark:text-zinc-50">
 				<span class="text-amber-600 dark:text-amber-400">👋 Hay...,</span> Nama Saya Putra
 			</h2>
-			<div class="max-w-[60ch] text-lg">
+			<div class="max-w-[60ch] text-sm sm:text-base md:text-lg lg:text-xl">
 				<p>
 					Seorang manusia biasa, yang sedang terjebak di dunia yang penuh dengan tanda tanya. Dan
 					disinilah tempatku menuliskan tanda tanya tersebut.
 				</p>
 			</div>
 			<nav class="flex items-center gap-4">
-				<Button href="https://example.com" target="_blank" size="lg">
+				<Button href="https://github.com/masputrawae" target="_blank" size="lg">
 					<Icon name="bi:github" />
 					<span>Github</span>
 				</Button>
