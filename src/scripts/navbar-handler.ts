@@ -22,10 +22,10 @@ const toggleNavbar = (
 }
 
 export const handlerNavbar = () => {
-	const button = document.getElementById('toggle-navbar')
-	const navbar = document.getElementById('navbar')
-	const iconOpen = document.getElementById('icon-navbar-open')
-	const iconClose = document.getElementById('icon-navbar-close')
+	const button = document.getElementById('toggle-menu')
+	const navbar = document.getElementById('menu')
+	const iconOpen = document.getElementById('icon-menu-open')
+	const iconClose = document.getElementById('icon-menu-close')
 
 	if (!button || !navbar || !iconClose || !iconOpen) return
 

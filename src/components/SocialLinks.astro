@@ -1,0 +1,23 @@
+---
+import { config } from '../site.config'
+import { Icon } from 'astro-icon/components'
+
+const {
+	social: { links }
+} = config
+
+const { iconSize = 20 } = Astro.props
+---
+
+<ul class="flex items-center gap-4">
+	{
+		links.map(({ name, href, target, icon }) => (
+			<li class="text-zinc-900 dark:text-zinc-50 hover:text-amber-500">
+				<a href={href} {target}>
+					<Icon size={iconSize} name={icon} />
+					<span class="sr-only">{name}</span>
+				</a>
+			</li>
+		))
+	}
+</ul>

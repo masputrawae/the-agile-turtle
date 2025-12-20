@@ -1,0 +1,20 @@
+---
+import { Icon } from 'astro-icon/components'
+---
+
+<div class="flex items-center gap-4">
+	<a href="/search/">
+		<Icon size={20} name="bi:search" />
+		<span class="sr-only">Search .... </span>
+	</a>
+	<button id="toggle-theme">
+		<Icon size={20} name="bi:sun" id="icon-light-mode" class="hidden" />
+		<Icon size={20} name="bi:moon-stars-fill" id="icon-dark-mode" />
+		<span class="sr-only">Switch Theme</span>
+	</button>
+	<button id="toggle-menu" class="md:hidden">
+		<Icon size={20} name="bi:menu-button-wide-fill" id="icon-menu-open" />
+		<Icon size={20} name="bi:x-lg" id="icon-menu-close" class="hidden" />
+		<span class="sr-only">Toggle Menu</span>
+	</button>
+</div>

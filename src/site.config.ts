@@ -1,37 +1,4 @@
-import type { HTMLAttributes } from 'astro/types'
-
-export interface ConfigType {
-	siteTitle: string
-	description: string
-	heroImage: string
-	languageCode: string
-	author: AuthorType
-	copyright: CopyrightType
-	social: SocialType
-}
-
-export interface AuthorType {
-	name: string
-	email: string
-	avatar: string
-}
-
-export interface CopyrightType {
-	year: string
-	license: string
-	licenseUrl: string
-}
-
-export interface LinkType extends HTMLAttributes<'a'> {
-	icon?: string
-}
-
-export interface SocialType {
-	twitterX: string
-	facebookAdmin: string
-	facebookAppId: string
-	links: LinkType[]
-}
+import type { ConfigType } from './types/site.type'
 
 export const config: ConfigType = {
 	siteTitle: 'Masputrawae',
@@ -89,5 +56,28 @@ export const config: ConfigType = {
 				icon: 'bi:github'
 			}
 		]
-	}
+	},
+
+	navigations: [
+		{
+			name: 'Home',
+			href: '/'
+		},
+		{
+			name: 'About',
+			href: '/about/'
+		},
+		{
+			name: 'Blog',
+			href: '/blog/'
+		},
+		{
+			name: 'Tags',
+			href: '/tags/'
+		},
+		{
+			name: 'Projects',
+			href: '/projects/'
+		}
+	]
 }

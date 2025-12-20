@@ -1,0 +1,16 @@
+---
+import NavBrand from './NavBrand.astro'
+import NavLinks from './NavLinks.astro'
+import NavToggle from './NavToggle.astro'
+---
+
+<header class:list={['relative border-b border-zinc-200', 'dark:border-zinc-700']}>
+	<nav class="mx-auto flex min-h-16 max-w-6xl items-center justify-between px-4 md:px-8">
+		<NavBrand />
+		<div class="flex items-center gap-8">
+			<NavLinks />
+			<div class="hidden h-6 w-px bg-zinc-200 md:block dark:bg-zinc-700"></div>
+			<NavToggle />
+		</div>
+	</nav>
+</header>

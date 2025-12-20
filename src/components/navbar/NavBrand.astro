@@ -1,0 +1,18 @@
+---
+import { config } from '../../site.config'
+
+const siteUrl = new URL(import.meta.env.BASE_URL, import.meta.env.SITE)
+const { siteTitle } = config
+---
+
+<a
+	href={siteUrl}
+	class:list={[
+		'text-xl font-semibold hover:text-amber-500',
+		'sm:text-2xl',
+		'text-zinc-950',
+		'dark:text-zinc-50'
+	]}
+>
+	{siteTitle}
+</a>

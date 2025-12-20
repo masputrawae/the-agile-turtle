@@ -1,0 +1,46 @@
+---
+import { config } from '../../site.config'
+
+const { navigations } = config
+const pathname = Astro.url.pathname
+const baseUrl = import.meta.env.BASE_URL
+---
+
+<ul
+	id="menu"
+	class:list={[
+		'absolute start-0 top-full origin-top',
+		'transiition-all hidden scale-y-0 duration-300',
+		'w-full border-y p-4',
+		'border-zinc-200 bg-zinc-50',
+		'dark:border-zinc-700 dark:bg-zinc-800',
+		'md:relative md:flex md:scale-y-100 md:gap-8 md:border-none md:p-0 md:transition-none'
+	]}
+>
+	{
+		navigations.map(({ href, name }) => {
+			const isCurrent = href === pathname
+			const isAncestor = pathname.startsWith(String(href)) && href !== baseUrl
+			const isActive = isCurrent || isAncestor
+
+			return (
+				<li>
+					<a
+						href={href}
+						class:list={[
+							isActive ? 'text-amber-600 dark:text-amber-400' : 'text-zinc-700 dark:text-zinc-400',
+							'hover:text-amber-500'
+						]}
+						{...(isCurrent
+							? { 'aria-current': 'page' }
+							: isAncestor
+								? { 'aria-current': true }
+								: {})}
+					>
+						{name}
+					</a>
+				</li>
+			)
+		})
+	}
+</ul>

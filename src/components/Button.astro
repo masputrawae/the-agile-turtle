@@ -1,0 +1,43 @@
+---
+import type { HTMLAttributes } from 'astro/types'
+
+interface LinkProps extends HTMLAttributes<'a'> {
+	icon?: string
+	className?: string
+	variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger'
+	size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+}
+
+const { href, className = '', variant = 'ghost', size = 'md', ...rest } = Astro.props as LinkProps
+
+const variants = {
+	primary: 'bg-amber-500 text-black hover:bg-amber-400',
+	secondary: 'bg-neutral-700 text-white hover:bg-neutral-600',
+	outline: 'border border-neutral-600 text-white hover:bg-neutral-700/50',
+	ghost: 'bg-transparent text-black hover:bg-neutral-700/40 dark:text-white',
+	danger: 'bg-red-600 text-white hover:bg-red-500'
+}
+
+const sizes = {
+	xs: 'text-xs px-2 py-1',
+	sm: 'text-sm px-3 py-1.5',
+	md: 'text-base px-4 py-2',
+	lg: 'text-lg px-5 py-2.5',
+	xl: 'text-xl px-6 py-3',
+	'2xl': 'text-2xl px-7 py-3.5'
+}
+---
+
+<a
+	href={href}
+	class:list={[
+		'inline-flex items-center gap-2 rounded-md font-semibold transition-all duration-200',
+		'shadow-xs/50 hover:scale-[1.03] active:scale-[0.97]',
+		variants[variant],
+		sizes[size],
+		className
+	]}
+	{...rest}
+>
+	<slot />
+</a>

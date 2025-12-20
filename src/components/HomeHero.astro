@@ -1,36 +1,54 @@
 ---
-import { Picture } from 'astro:assets'
-
 import { config } from '../site.config'
-const {
-	author: { name, avatar }
-} = config
+import { Picture } from 'astro:assets'
+import { Icon } from 'astro-icon/components'
+const { author } = config
+
+import Button from './Button.astro'
 ---
 
-<header class="mx-auto min-h-[calc(100dvh-5rem)] max-w-[65ch] place-content-center px-4 py-16">
-	<section
-		class:list={['grid w-full items-center gap-4', 'md:grid-cols-[200px_minmax(0,1fr)] md:gap-8']}
-	>
-		<div class="mx-auto w-fit overflow-hidden rounded-full border-4 border-amber-600 p-2">
+<header class="mx-auto grid min-h-[calc(100vh-4rem)] max-w-4xl py-8">
+	<div class="grid -translate-y-4 items-center gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,18rem)]">
+		<section
+			class:list={[
+				'overflow-hidden rounded-full border-4 border-amber-600 p-2',
+				'w-50',
+				'sm:w-3xs',
+				'md:order-2'
+			]}
+		>
 			<Picture
-				src={avatar}
-				alt={name}
+				src={author.avatar}
+				alt={author.name}
+				layout="constrained"
 				inferSize={true}
-				width={200}
-				height={200}
 				priority={true}
-				class="rounded-full object-cover object-center"
+				widths={[200, 256]}
+				class="size-full rounded-full object-cover object-center"
 			/>
-		</div>
-		<div class="text-center md:text-start">
-			<h1 class="text-xl font-semibold">Selamat Datang!👋</h1>
-			<h2 class="mb-4 text-4xl font-semibold">
-				<span class="text-amber-600 dark:text-amber-400">Hai,</span> nama saya Putra
+		</section>
+
+		<section class="grid gap-4 md:order-1">
+			<h1 class="text-2xl font-semibold text-zinc-700 dark:text-zinc-400">Selamat Datang</h1>
+			<h2 class="text-2xl font-semibold text-zinc-950 md:text-4xl dark:text-zinc-50">
+				<span class="text-amber-600 dark:text-amber-400">👋 Hay...,</span> Nama Saya Putra
 			</h2>
-			<p class="text-sm">
-				Seorang manusia biasa, yang sedang terjebak di dunia yang penuh dengan tanda tanya. Dan
-				disinilah tempatku menuliskan tanda tanya tersebut.
-			</p>
-		</div>
-	</section>
+			<div class="max-w-[60ch] text-lg">
+				<p>
+					Seorang manusia biasa, yang sedang terjebak di dunia yang penuh dengan tanda tanya. Dan
+					disinilah tempatku menuliskan tanda tanya tersebut.
+				</p>
+			</div>
+			<nav class="flex items-center gap-4">
+				<Button href="https://example.com" target="_blank" size="lg">
+					<Icon name="bi:github" />
+					<span>Github</span>
+				</Button>
+				<Button href="/about/" variant="primary" size="lg">
+					<Icon name="bi:person-circle" />
+					<span>About</span>
+				</Button>
+			</nav>
+		</section>
+	</div>
 </header>

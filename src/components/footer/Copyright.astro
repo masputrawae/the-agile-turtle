@@ -1,0 +1,12 @@
+---
+import { config } from '../../site.config.ts'
+
+const {
+	author,
+	copyright: { year, license }
+} = config
+---
+
+<aside class="text-center text-sm">
+	<p>&copy; {year} {author.name} - {license}</p>
+</aside>

@@ -5,8 +5,8 @@ import { config } from '../site.config.ts'
 import { ClientRouter } from 'astro:transitions'
 import { Font } from 'astro:assets'
 
-import Header from '../components/Header.astro'
-import Footer from '../components/Footer.astro'
+import Navbar from '../components/navbar/Navbar.astro'
+import Footer from '../components/footer/Footer.astro'
 
 const { languageCode } = config
 ---
@@ -14,28 +14,26 @@ const { languageCode } = config
 <html
 	lang={languageCode}
 	data-theme="dark"
-	class:list={[
-		'bg-neutral-50 text-neutral-700',
-		'dark:bg-neutral-800 dark:text-neutral-300',
-		'font-geist'
-	]}
+	class:list={['font-geist', 'bg-zinc-50 text-zinc-800', 'dark:bg-zinc-800 dark:text-zinc-300']}
 >
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>Masputrawae</title>
+
 		<script>
-			import { main } from '../components/scripts/main.ts'
+			import { main } from '../scripts/main.ts'
 			main()
 		</script>
+
 		<Font cssVariable="--font-geist" preload />
 		<ClientRouter />
 	</head>
-	<body class:list={['mx-auto max-w-5xl']}>
-		<Header />
-		<main>
+	<body>
+		<Navbar />
+		<main class="mx-auto max-w-6xl px-4 md:px-8">
 			<slot />
 		</main>
-		<Footer />
+		<Footer transition:persist />
 	</body>
 </html>
