@@ -1,0 +1,16 @@
+---
+const { className } = Astro.props as {
+	className: string
+}
+---
+
+<article
+	class:list={[
+		'grid gap-4 overflow-hidden rounded-lg border border-zinc-200 shadow-sm/20',
+		'transition-transform duration-300 hover:-translate-y-1',
+		'dark:border-zinc-700',
+		className
+	]}
+>
+	<slot />
+</article>

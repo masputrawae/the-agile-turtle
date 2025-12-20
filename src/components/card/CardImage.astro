@@ -1,0 +1,20 @@
+---
+import { Picture } from 'astro:assets'
+
+const { image, title } = Astro.props as { image: string; title: string }
+---
+
+<div class="aspect-video w-full overflow-hidden border-b border-zinc-200 dark:border-zinc-700">
+	{
+		image && (
+			<Picture
+				src={image}
+				alt={title}
+				inferSize={true}
+				width={320}
+				height={180}
+				class="size-full object-cover object-center"
+			/>
+		)
+	}
+</div>

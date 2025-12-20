@@ -1,0 +1,7 @@
+---
+const { className } = Astro.props as { className: string }
+---
+
+<div class:list={['prose prose-zinc dark:prose-invert px-4', className]}>
+	<slot />
+</div>

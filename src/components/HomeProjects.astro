@@ -2,8 +2,13 @@
 import { Picture } from 'astro:assets'
 import { getCollection } from 'astro:content'
 import { config } from '../site.config'
-import Button from './Button.astro'
 import { Icon } from 'astro-icon/components'
+
+import Button from './Button.astro'
+import CardWrapper from './card/CardWrapper.astro'
+import CardBody from './card/CardBody.astro'
+import CardImage from './card/CardImage.astro'
+import CardFooter from './card/CardFooter.astro'
 
 const projects = await getCollection('projects')
 
@@ -14,8 +19,8 @@ const featured = projects
 	.slice(0, 4)
 ---
 
-<section class="-mt-px border-y border-zinc-200 py-14 dark:border-zinc-700 grid gap-8">
-	<article class="prose prose-zinc dark:prose-invert mx-auto max-w-3xl">
+<section class="-mt-px grid min-h-screen gap-8 border-y border-zinc-200 py-14 dark:border-zinc-700">
+	<article class="prose prose-zinc dark:prose-invert container mx-auto max-w-full">
 		<h2>No Project, Still Learning</h2>
 		<p>
 			Saat ini saya belum memiliki banyak project besar untuk dipamerkan. Sebagian besar waktu saya
@@ -24,26 +29,27 @@ const featured = projects
 		</p>
 	</article>
 
-	<div class="mx-auto max-w-3xl grid gap-8 md:grid-cols-2">
+	<div class="container mx-auto grid gap-8 md:grid-cols-2 lg:grid-cols-3">
 		{
 			featured.map(({ id, collection, data: { heroImage, title, description, repo } }) => (
-				<article class="border border-zinc-200 dark:border-zinc-700 rounded-lg shadow-sm overflow-hidden shadow-xs/30">
-					<Picture src={heroImage ?? config.heroImage} alt={title} inferSize={true} class="object-cover object-center w-full border-b border-zinc-200 dark:border-zinc-700"/>
-          <div class="p-4 prose prose-zinc dark:prose-invert">
-            <h3>{title}</h3>
-            <p class="line-clamp-3">{description}</p>
-            <div class="not-prose flex items-center gap-4">
-              <Button href={repo} target="_blank" variant="primary">
-                <Icon size={20} name="bi:github" />
-                Repo
-              </Button>
-              <Button href={`/${collection}/${id}/`} target="_blank">
-                <Icon size={20} name="bi:alt" />
-                Selengkapnya
-              </Button>
-            </div>
-          </div>
-				</article>
+				<CardWrapper>
+					<CardImage image={heroImage} title={title} />
+					<CardBody>
+						<h3 class="line-clamp-1">{title}</h3>
+						<p class="line-clamp-3 text-sm">{description}</p>
+					</CardBody>
+					<CardFooter>
+						<Button href={repo} target="_blank" variant="primary">
+							<Icon size={20} name="bi:github" />
+							Repo
+						</Button>
+						<Button href={`/${collection}/${id}/`}>
+							<Icon size={20} name="bi:alt" />
+							Selengkapnya
+							<span class="sr-only">{title}</span>
+						</Button>
+					</CardFooter>
+				</CardWrapper>
 			))
 		}
 	</div>
